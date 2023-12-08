@@ -9,7 +9,7 @@ on:
 jobs:
   build_linux:
     name: Build Passy for Android and Linux
-    runs-on: ubuntu-latest
+    runs-on: buildjet-4vcpu-ubuntu-2204
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
