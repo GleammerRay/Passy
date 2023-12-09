@@ -1,4 +1,5 @@
 #! /bin/bash
+cd /Passy
 
 # Install dependencies
 sudo apt-get update
@@ -24,9 +25,9 @@ flutter config --no-analytics
 bash build_all_with_updates_popup.sh
 
 # Prepare releases
-cd ..
-mkdir -p build/linux-bundle/Passy
-cp -r Passy/build/linux/x64/release/bundle/. build/linux-bundle/Passy
-cp Passy/build/appimage/Passy-Latest-x86_64.AppImage build
-chmod +x build/linux-bundle/Passy/passy
-chmod +x build/Passy-Latest-x86_64.AppImage
+cd /passy-build
+mkdir -p linux-bundle/Passy
+cp -r /Passy/build/linux/x64/release/bundle/. linux-bundle/Passy
+cp /Passy/build/appimage/Passy-Latest-x86_64.AppImage .
+chmod +x linux-bundle/Passy/passy
+chmod +x Passy-Latest-x86_64.AppImage
