@@ -132,6 +132,7 @@ jobs:
         shell: bash
         run: |
           sudo dpkg --add-architecture arm64
+          sudo sed -i 's/security/old-releases/g' /etc/apt/sources.list
           sudo apt update
           sudo apt install libc6:arm64
       - name: Create build directory
