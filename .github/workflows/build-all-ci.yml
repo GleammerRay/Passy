@@ -117,11 +117,6 @@ jobs:
     name: Build Passy CLI for Linux ARMv7
     runs-on: ubuntu-latest
     steps:
-      - name: Test
-        shell: bash
-        run: |
-          ls
-          echo $PWD
       - name: Checkout repository
         uses: actions/checkout@v3
       - name: Set up QEMU
@@ -145,30 +140,18 @@ jobs:
           name: ubuntu
           options: --rm --platform linux/arm/v7 -v $PWD:/Passy -v /home/runner/work/Passy/build:/passy-build -v /home/runner/work/Passy/bin:/passy-bin
           args: /passy-bin/armv7.sh
-      - name: Archive Linux bundle build
+      - name: Archive Passy CLI build
         uses: thedoctor0/zip-release@0.7.1
         with:
           type: zip
-          directory: ../build/linux-bundle
-          filename: Passy-Linux-Bundle.zip
+          directory: ../build/cli
+          filename: Passy-CLI-Linux-ARMv7.zip
           path: Passy
-      - name: Archive Linux AppImage build
-        uses: thedoctor0/zip-release@0.7.1
-        with:
-          type: zip
-          directory: ../build
-          filename: Passy-Linux-AppImage.zip
-          path: Passy-Latest-x86_64.AppImage
-      - name: Upload Linux bundle build
+      - name: Upload Passy CLI build
         uses: actions/upload-artifact@v3
         with:
           name: linux-bundle
-          path: /home/runner/work/Passy/build/linux-bundle/Passy-Linux-Bundle.zip
-      - name: Upload Linux AppImage build
-        uses: actions/upload-artifact@v3
-        with:
-          name: linux-appimage
-          path: /home/runner/work/Passy/build/Passy-Linux-AppImage.zip
+          path: /home/runner/work/Passy/build/cli/Passy-CLI-Linux-ARMv7.zip
   build_windows:
     name: Build Passy for Windows
     runs-on: windows-latest
