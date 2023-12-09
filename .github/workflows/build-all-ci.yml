@@ -114,7 +114,7 @@ jobs:
           name: linux-appimage-no-updates-popup
           path: /home/runner/work/Passy/build/Passy-Linux-AppImage.zip
   build_linux_armv7:
-    name: Build Passy for Linux ARMv7
+    name: Build Passy CLI for Linux ARMv7
     runs-on: ubuntu-latest
     steps:
       - name: Test
@@ -124,8 +124,6 @@ jobs:
           echo $PWD
       - name: Checkout repository
         uses: actions/checkout@v3
-        with:
-          submodules: true
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2.1.0
       - name: Create build directory
