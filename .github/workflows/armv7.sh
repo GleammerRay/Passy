@@ -9,18 +9,14 @@ apt-get update
 apt-get -y install clang cmake ninja-build pkg-config libgtk-3-dev liblzma-dev binutils coreutils desktop-file-utils fakeroot fuse libgdk-pixbuf2.0-dev patchelf python3-pip python3-setuptools squashfs-tools strace util-linux zsync git file unzip zip wget curl libc6
 
 echo "===================================================="
-echo "Getting the flutter submodule"
-echo "===================================================="
-
-git submodule init
-git submodule update
-
-echo "===================================================="
 echo "Configure"
 echo "===================================================="
 
 export PATH="$PATH:$PWD/submodules/flutter/bin"
+git config --global --add safe.directory /Passy
 git config --global --add safe.directory /Passy/submodules/flutter
+git submodule init
+git submodule update
 
 echo "===================================================="
 echo "Install dart"
