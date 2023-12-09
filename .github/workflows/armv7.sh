@@ -32,9 +32,9 @@ echo "===================================================="
 echo "Install flutter"
 echo "===================================================="
 
-flutter precache
-submodules/flutter/bin/flutter doctor
 export PATH="$PATH:$PWD/submodules/flutter/bin"
+flutter precache
+flutter doctor
 
 echo "===================================================="
 echo "Configure flutter"
