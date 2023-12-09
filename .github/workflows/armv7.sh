@@ -28,12 +28,12 @@ wget https://storage.googleapis.com/dart-archive/channels/stable/release/3.1.0/s
 unzip dartsdk-linux-arm-release.zip
 rm dartsdk-linux-arm-release.zip
 cd $LAST_PWD
-dart pub get
 
 echo "===================================================="
 echo "Install flutter"
 echo "===================================================="
 
+flutter clean
 flutter doctor
 
 echo "===================================================="
