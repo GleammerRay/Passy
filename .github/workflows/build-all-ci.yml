@@ -139,6 +139,7 @@ jobs:
           name: ubuntu
           options: --rm --platform linux/arm/v7 -v $PWD:/Passy -v /home/runner/work/Passy/build:/build
           args: |
+            echo "Hello World!"
             cd Passy
             ls
             echo $PWD
