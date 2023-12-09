@@ -116,9 +116,6 @@ jobs:
   build_linux_armv7:
     name: Build Passy for Linux ARMv7
     runs-on: ubuntu-latest
-    container:
-      image: ubuntu:latest
-      options: --rm -ti --platform linux/arm/v7
     steps:
       - name: Test
         shell: bash
