@@ -32,6 +32,7 @@ echo "===================================================="
 echo "Install flutter"
 echo "===================================================="
 
+flutter precache
 submodules/flutter/bin/flutter doctor
 export PATH="$PATH:$PWD/submodules/flutter/bin"
 
@@ -45,7 +46,6 @@ echo "===================================================="
 echo "Build with updates popup"
 echo "===================================================="
 
-submodules/flutter/bin/flutter pub get
 bash build_all_with_updates_popup.sh
 
 echo "===================================================="
