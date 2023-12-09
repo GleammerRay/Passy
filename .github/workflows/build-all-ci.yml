@@ -128,6 +128,12 @@ jobs:
           submodules: true
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2.1.0
+      - name: Install dependencies
+        shell: bash
+        run: |
+          sudo dpkg --add-architecture arm64
+          sudo apt update
+          sudo apt install libc6:arm64
       - name: Create build directory
         shell: bash
         run: |
