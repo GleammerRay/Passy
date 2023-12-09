@@ -136,7 +136,7 @@ jobs:
         uses: tj-actions/docker-run@v2
         with:
           image: ubuntu:latest
-          options: --rm -ti --platform linux/arm/v7 -v $PWD:/Passy -v /home/runner/work/Passy/build:/build
+          options: --rm --platform linux/arm/v7 -v $PWD:/Passy -v /home/runner/work/Passy/build:/build
           args: |
             cd Passy
             ls
