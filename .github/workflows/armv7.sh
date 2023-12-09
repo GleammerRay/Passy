@@ -32,6 +32,7 @@ echo "===================================================="
 echo "Install flutter"
 echo "===================================================="
 
+submodules/flutter/bin/flutter upgrade 3.13.2
 submodules/flutter/bin/flutter doctor
 export PATH="$PATH:$PWD/submodules/flutter/bin"
 
