@@ -9,6 +9,12 @@ apt-get update
 apt-get -y install clang cmake ninja-build pkg-config libgtk-3-dev liblzma-dev binutils coreutils desktop-file-utils fakeroot fuse libgdk-pixbuf2.0-dev patchelf python3-pip python3-setuptools squashfs-tools strace util-linux zsync git file unzip zip wget curl
 
 echo "===================================================="
+echo "Configure"
+echo "===================================================="
+
+git config --global --add safe.directory /Passy/submodules/flutter
+
+echo "===================================================="
 echo "Install dart"
 echo "===================================================="
 
@@ -17,6 +23,7 @@ export LAST_PWD=$PWD
 cd submodules/flutter/bin/cache
 wget https://storage.googleapis.com/dart-archive/channels/stable/release/3.1.0/sdk/dartsdk-linux-arm-release.zip
 unzip dartsdk-linux-arm-release.zip
+
 rm dartsdk-linux-arm-release.zip
 cd $LAST_PWD
 
