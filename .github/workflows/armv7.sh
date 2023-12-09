@@ -12,6 +12,7 @@ echo "===================================================="
 echo "Configure"
 echo "===================================================="
 
+export PATH="$PATH:$PWD/submodules/flutter/bin"
 git config --global --add safe.directory /Passy/submodules/flutter
 
 echo "===================================================="
@@ -19,7 +20,7 @@ echo "Install dart"
 echo "===================================================="
 
 mkdir submodules/flutter/bin/cache
-submodules/flutter/bin/flutter doctor
+flutter doctor
 export LAST_PWD=$PWD
 cd submodules/flutter/bin/cache
 rm -rf dart-sdk
@@ -27,13 +28,12 @@ wget https://storage.googleapis.com/dart-archive/channels/stable/release/3.1.0/s
 unzip dartsdk-linux-arm-release.zip
 rm dartsdk-linux-arm-release.zip
 cd $LAST_PWD
+dart pub get
 
 echo "===================================================="
 echo "Install flutter"
 echo "===================================================="
 
-export PATH="$PATH:$PWD/submodules/flutter/bin"
-flutter precache
 flutter doctor
 
 echo "===================================================="
