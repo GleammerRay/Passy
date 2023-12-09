@@ -22,6 +22,7 @@ mkdir submodules/flutter/bin/cache
 submodules/flutter/bin/flutter doctor
 export LAST_PWD=$PWD
 cd submodules/flutter/bin/cache
+rm -rf dart-sdk
 wget https://storage.googleapis.com/dart-archive/channels/stable/release/3.1.0/sdk/dartsdk-linux-arm-release.zip
 unzip dartsdk-linux-arm-release.zip
 rm dartsdk-linux-arm-release.zip
