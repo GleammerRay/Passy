@@ -9,7 +9,7 @@ on:
 jobs:
   build_linux:
     name: Build Passy for Android and Linux
-    runs-on: buildjet-4vcpu-ubuntu-2204-arm
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -23,6 +23,122 @@ jobs:
       - name: Install flutter
         shell: bash
         run: | 
+          submodules/flutter/bin/flutter doctor
+          echo "$PWD/submodules/flutter/bin" >> $GITHUB_PATH
+      - name: Configure flutter
+        shell: bash
+        run: flutter config --no-analytics
+      - name: Build with updates popup
+        shell: bash
+        run: bash build_all_with_updates_popup.sh
+      - name: Prepare releases
+        shell: bash
+        run: |
+          cd ..
+          mkdir -p build/linux-bundle/Passy
+          cp Passy/build/app/outputs/flutter-apk/app-release.apk build/Passy-Android.apk
+          cp -r Passy/build/linux/x64/release/bundle/. build/linux-bundle/Passy
+          cp Passy/build/appimage/Passy-Latest-x86_64.AppImage build
+          chmod +x build/linux-bundle/Passy/passy
+          chmod +x build/Passy-Latest-x86_64.AppImage
+      - name: Archive Linux bundle build
+        uses: thedoctor0/zip-release@0.7.1
+        with:
+          type: zip
+          directory: ../build/linux-bundle
+          filename: Passy-Linux-Bundle.zip
+          path: Passy
+      - name: Archive Linux AppImage build
+        uses: thedoctor0/zip-release@0.7.1
+        with:
+          type: zip
+          directory: ../build
+          filename: Passy-Linux-AppImage.zip
+          path: Passy-Latest-x86_64.AppImage
+      - name: Upload Android build
+        uses: actions/upload-artifact@v3
+        with:
+          name: android
+          path: /home/runner/work/Passy/build/Passy-Android.apk
+      - name: Upload Linux bundle build
+        uses: actions/upload-artifact@v3
+        with:
+          name: linux-bundle
+          path: /home/runner/work/Passy/build/linux-bundle/Passy-Linux-Bundle.zip
+      - name: Upload Linux AppImage build
+        uses: actions/upload-artifact@v3
+        with:
+          name: linux-appimage
+          path: /home/runner/work/Passy/build/Passy-Linux-AppImage.zip
+      - name: Build without updates popup
+        shell: bash
+        run: bash build_all_without_updates_popup.sh
+      - name: Prepare releases
+        shell: bash
+        run: |
+          cd ..
+          rm -rf build/*
+          mkdir -p build/linux-bundle/Passy
+          cp Passy/build/app/outputs/flutter-apk/app-release.apk build/Passy-Android.apk
+          cp -r Passy/build/linux/x64/release/bundle/. build/linux-bundle/Passy
+          cp Passy/build/appimage/Passy-Latest-x86_64.AppImage build
+          chmod +x build/linux-bundle/Passy/passy
+          chmod +x build/Passy-Latest-x86_64.AppImage
+      - name: Archive Linux bundle build
+        uses: thedoctor0/zip-release@0.7.1
+        with:
+          type: zip
+          directory: ../build/linux-bundle
+          filename: Passy-Linux-Bundle.zip
+          path: Passy
+      - name: Archive Linux AppImage build
+        uses: thedoctor0/zip-release@0.7.1
+        with:
+          type: zip
+          directory: ../build
+          filename: Passy-Linux-AppImage.zip
+          path: Passy-Latest-x86_64.AppImage
+      - name: Upload Android no updates popup build
+        uses: actions/upload-artifact@v3
+        with:
+          name: android-no-updates-popup
+          path: /home/runner/work/Passy/build/Passy-Android.apk
+      - name: Upload Linux bundle no updates popup build
+        uses: actions/upload-artifact@v3
+        with:
+          name: linux-bundle-no-updates-popup
+          path: /home/runner/work/Passy/build/linux-bundle/Passy-Linux-Bundle.zip
+      - name: Upload Linux AppImage no updates popup build
+        uses: actions/upload-artifact@v3
+        with:
+          name: linux-appimage-no-updates-popup
+          path: /home/runner/work/Passy/build/Passy-Linux-AppImage.zip
+  build_linux_armv7:
+    name: Build Passy for Linux ARMv7
+    runs-on: ubuntu-latest
+    container:
+      image: ubuntu:latest
+      options: --rm -ti --platform linux/arm/v7
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          submodules: true
+      - name: Install dependencies
+        shell: bash
+        run: |
+          sudo apt-get update
+          sudo apt-get -y install clang cmake ninja-build pkg-config libgtk-3-dev liblzma-dev binutils coreutils desktop-file-utils fakeroot fuse libgdk-pixbuf2.0-dev patchelf python3-pip python3-setuptools squashfs-tools strace util-linux zsync file unzip zip 
+      - name: Install flutter
+        shell: bash
+        run: |
+          mkdir submodules/flutter/bin/cache
+          export LAST_PWD=$PWD
+          cd submodules/flutter/bin/cache
+          wget https://storage.googleapis.com/dart-archive/channels/stable/release/3.1.0/sdk/dartsdk-linux-arm-release.zip
+          unzip dartsdk-linux-arm-release.zip
+          rm dartsdk-linux-arm-release.zip
+          cd $LAST_PWD
           submodules/flutter/bin/flutter doctor
           echo "$PWD/submodules/flutter/bin" >> $GITHUB_PATH
       - name: Configure flutter
