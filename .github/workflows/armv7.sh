@@ -46,18 +46,15 @@ echo "===================================================="
 flutter config --no-analytics
 
 echo "===================================================="
-echo "Build with updates popup"
+echo "Build Passy CLI"
 echo "===================================================="
 
-bash build_all_with_updates_popup.sh
+bash build_cli.sh
 
 echo "===================================================="
 echo "Prepare releases"
 echo "===================================================="
 
 cd /passy-build
-mkdir -p linux-bundle/Passy
-cp -r /Passy/build/linux/x64/release/bundle/. linux-bundle/Passy
-cp /Passy/build/appimage/Passy-Latest-x86_64.AppImage .
-chmod +x linux-bundle/Passy/passy
-chmod +x Passy-Latest-x86_64.AppImage
+mkdir cli
+cp -r /Passy/build/cli/latest/. cli
