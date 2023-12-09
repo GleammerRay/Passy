@@ -1,3 +1,5 @@
+#! /bin/bash
+
 # Install dependencies
 sudo apt-get update
 sudo apt-get -y install clang cmake ninja-build pkg-config libgtk-3-dev liblzma-dev binutils coreutils desktop-file-utils fakeroot fuse libgdk-pixbuf2.0-dev patchelf python3-pip python3-setuptools squashfs-tools strace util-linux zsync file unzip zip
