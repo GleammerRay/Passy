@@ -167,7 +167,7 @@ jobs:
           mkdir build
           mkdir bin
           cd bin
-          wget https://raw.githubusercontent.com/GleammerRay/Passy/main/.github/workflows/armv7.sh
+          wget https://raw.githubusercontent.com/GleammerRay/Passy/main/.github/workflows/arm64.sh
           chmod +x arm64.sh
       - name: Install dependencies
         shell: bash
