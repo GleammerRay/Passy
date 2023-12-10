@@ -1,4 +1,5 @@
 #! /bin/bash
+cd /Passy
 
 echo "===================================================="
 echo "Install dependencies"
